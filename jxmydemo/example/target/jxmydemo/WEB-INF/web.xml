@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring-config.xml</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>
+        classpath*:spring-config.xml
+      </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+             <servlet-name>default</servlet-name>
+             <url-pattern>*.css</url-pattern>
+         </servlet-mapping>
+      <servlet-mapping>
+           <servlet-name>default</servlet-name>
+           <url-pattern>*.js</url-pattern>
+       </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.xls</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>welcome_main</servlet-name>
+    <jsp-file>/WEB-INF/main/welcome_main.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>welcome_main</servlet-name>
+    <url-pattern>/welcome_main</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>MyFinanceForm</servlet-name>
+    <jsp-file>/WEB-INF/main/MyFinanceForm.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyFinanceForm</servlet-name>
+    <url-pattern>/MyFinanceForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FinanceForm</servlet-name>
+    <jsp-file>/WEB-INF/main/FinanceForm.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinanceForm</servlet-name>
+    <url-pattern>/FinanceForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FinanceChecked</servlet-name>
+    <jsp-file>/WEB-INF/main/FinanceChecked.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinanceChecked</servlet-name>
+    <url-pattern>/FinanceChecked</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FinanceUnchecked</servlet-name>
+    <jsp-file>/WEB-INF/main/FinanceUnchecked.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinanceUnchecked</servlet-name>
+    <url-pattern>/FinanceUnchecked</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PaymentInfo</servlet-name>
+    <jsp-file>/WEB-INF/main/PaymentInfo.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PaymentInfo</servlet-name>
+    <url-pattern>/PaymentInfo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>PaymentInfoForm</servlet-name>
+    <jsp-file>/WEB-INF/main/PaymentInfoForm.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PaymentInfoForm</servlet-name>
+    <url-pattern>/PaymentInfoForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GatherInfo</servlet-name>
+    <jsp-file>/WEB-INF/main/GatherInfo.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GatherInfo</servlet-name>
+    <url-pattern>/GatherInfo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GatherInfoForm</servlet-name>
+    <jsp-file>/WEB-INF/main/GatherInfoForm.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GatherInfoForm</servlet-name>
+    <url-pattern>/GatherInfoForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>$AddEmployee</servlet-name>
+    <jsp-file>/WEB-INF/main/web_0724/html/HR_Management/File/$AddEmployee.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>$AddEmployee</servlet-name>
+    <url-pattern>/$AddEmployee</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>$SearchEmployee</servlet-name>
+    <jsp-file>/WEB-INF/main/web_0724/html/HR_Management/File/$SearchEmployee.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>$SearchEmployee</servlet-name>
+    <url-pattern>/$SearchEmployee</url-pattern>
+  </servlet-mapping>
+  
+
+  <servlet>
+    <servlet-name>FileManagement</servlet-name>
+    <jsp-file>/WEB-INF/main/web_0724/html/HR_Management/File/FileManagement.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileManagement</servlet-name>
+    <url-pattern>/FileManagement</url-pattern>
+  </servlet-mapping>
+
+
+
+
+  <filter>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

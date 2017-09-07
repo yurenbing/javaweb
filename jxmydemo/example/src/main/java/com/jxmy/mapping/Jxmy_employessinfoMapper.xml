@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxmy.dao.Jxmy_employessinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jxmy.pojo.Jxmy_employessinfo" >
+    <id column="EMP_ID" property="empId" jdbcType="INTEGER" />
+    <result column="EMP_Name" property="empName" jdbcType="VARCHAR" />
+    <result column="EMP_Gender" property="empGender" jdbcType="VARCHAR" />
+    <result column="EMP_Native" property="empNative" jdbcType="VARCHAR" />
+    <result column="EMP_Number" property="empNumber" jdbcType="VARCHAR" />
+    <result column="EMP_IDNumber" property="empIdnumber" jdbcType="VARCHAR" />
+    <result column="EMP_DeptID" property="empDeptid" jdbcType="INTEGER" />
+    <result column="EMP_Nation" property="empNation" jdbcType="VARCHAR" />
+    <result column="EMP_Birth" property="empBirth" jdbcType="TIMESTAMP" />
+    <result column="EMP_PoliticalStatus" property="empPoliticalstatus" jdbcType="VARCHAR" />
+    <result column="EMP_PartyTime" property="empPartytime" jdbcType="TIMESTAMP" />
+    <result column="EMP_LeagueTime" property="empLeaguetime" jdbcType="TIMESTAMP" />
+    <result column="EMP_Hiredate" property="empHiredate" jdbcType="VARCHAR" />
+    <result column="EMP_HukouType" property="empHukoutype" jdbcType="VARCHAR" />
+    <result column="EMP_HukouLocation" property="empHukoulocation" jdbcType="VARCHAR" />
+    <result column="EMP_Tpye" property="empTpye" jdbcType="VARCHAR" />
+    <result column="EMP_Title" property="empTitle" jdbcType="INTEGER" />
+    <result column="EMP_Position" property="empPosition" jdbcType="VARCHAR" />
+    <result column="EMP_MobilePhone" property="empMobilephone" jdbcType="VARCHAR" />
+    <result column="EMP_Phone" property="empPhone" jdbcType="VARCHAR" />
+    <result column="EMP_QQ" property="empQq" jdbcType="VARCHAR" />
+    <result column="EMP_HomeAddr" property="empHomeaddr" jdbcType="VARCHAR" />
+    <result column="EMP_Addr" property="empAddr" jdbcType="VARCHAR" />
+    <result column="EMP_EducationalLevel" property="empEducationallevel" jdbcType="VARCHAR" />
+    <result column="EMP_Degree" property="empDegree" jdbcType="VARCHAR" />
+    <result column="EMP_GraduationTime" property="empGraduationtime" jdbcType="TIMESTAMP" />
+    <result column="EMP_GraduationSchool" property="empGraduationschool" jdbcType="VARCHAR" />
+    <result column="EMP_Master" property="empMaster" jdbcType="VARCHAR" />
+    <result column="EMP_ComputerLevel" property="empComputerlevel" jdbcType="VARCHAR" />
+    <result column="EMP_Language1" property="empLanguage1" jdbcType="VARCHAR" />
+    <result column="EMP_Language2" property="empLanguage2" jdbcType="VARCHAR" />
+    <result column="EMP_Language3" property="empLanguage3" jdbcType="VARCHAR" />
+    <result column="EMP_Specialties" property="empSpecialties" jdbcType="VARCHAR" />
+    <result column="EMP_Status" property="empStatus" jdbcType="VARCHAR" />
+    <result column="EMP_LeaveDate" property="empLeavedate" jdbcType="TIMESTAMP" />
+    <result column="EMP_SocialSecurity" property="empSocialsecurity" jdbcType="VARCHAR" />
+    <result column="EMP_SecurityNumber" property="empSecuritynumber" jdbcType="VARCHAR" />
+    <result column="EMP_Salary" property="empSalary" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jxmy.pojo.Jxmy_employessinfo" extends="BaseResultMap" >
+    <result column="EMP_PhotoUrl" property="empPhotourl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EMP_ID, EMP_Name, EMP_Gender, EMP_Native, EMP_Number, EMP_IDNumber, EMP_DeptID, EMP_Nation,
+    EMP_Birth, EMP_PoliticalStatus, EMP_PartyTime, EMP_LeagueTime, EMP_Hiredate, EMP_HukouType,
+    EMP_HukouLocation, EMP_Tpye, EMP_Title, EMP_Position, EMP_MobilePhone, EMP_Phone,
+    EMP_QQ, EMP_HomeAddr, EMP_Addr, EMP_EducationalLevel, EMP_Degree, EMP_GraduationTime,
+    EMP_GraduationSchool, EMP_Master, EMP_ComputerLevel, EMP_Language1, EMP_Language2,
+    EMP_Language3, EMP_Specialties, EMP_Status, EMP_LeaveDate, EMP_SocialSecurity, EMP_SecurityNumber,
+    EMP_Salary
+  </sql>
+  <sql id="Blob_Column_List" >
+    EMP_PhotoUrl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_employessinfo
+    where EMP_ID = #{empId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_employessinfo
+  </select>
+  <select id="selectFindInfo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_employessinfo
+    where 1=1 and (EMP_Name=#{empName,jdbcType=VARCHAR} or 1=1) and EMP_Gender=#{empGender,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jxmy_employessinfo
+    where EMP_ID = #{empId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxmy.pojo.Jxmy_employessinfo" >
+    insert into jxmy_employessinfo (EMP_ID, EMP_Name, EMP_Gender,
+    EMP_Native, EMP_Number, EMP_IDNumber,
+    EMP_DeptID, EMP_Nation, EMP_Birth,
+    EMP_PoliticalStatus, EMP_PartyTime, EMP_LeagueTime,
+    EMP_Hiredate, EMP_HukouType, EMP_HukouLocation,
+    EMP_Tpye, EMP_Title, EMP_Position,
+    EMP_MobilePhone, EMP_Phone, EMP_QQ,
+    EMP_HomeAddr, EMP_Addr, EMP_EducationalLevel,
+    EMP_Degree, EMP_GraduationTime, EMP_GraduationSchool,
+    EMP_Master, EMP_ComputerLevel, EMP_Language1,
+    EMP_Language2, EMP_Language3, EMP_Specialties,
+    EMP_Status, EMP_LeaveDate, EMP_SocialSecurity,
+    EMP_SecurityNumber, EMP_Salary, EMP_PhotoUrl
+    )
+    values (#{empId,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR}, #{empGender,jdbcType=VARCHAR},
+    #{empNative,jdbcType=VARCHAR}, #{empNumber,jdbcType=VARCHAR}, #{empIdnumber,jdbcType=VARCHAR},
+    #{empDeptid,jdbcType=INTEGER}, #{empNation,jdbcType=VARCHAR}, #{empBirth,jdbcType=TIMESTAMP},
+    #{empPoliticalstatus,jdbcType=VARCHAR}, #{empPartytime,jdbcType=TIMESTAMP}, #{empLeaguetime,jdbcType=TIMESTAMP},
+    #{empHiredate,jdbcType=VARCHAR}, #{empHukoutype,jdbcType=VARCHAR}, #{empHukoulocation,jdbcType=VARCHAR},
+    #{empTpye,jdbcType=VARCHAR}, #{empTitle,jdbcType=INTEGER}, #{empPosition,jdbcType=VARCHAR},
+    #{empMobilephone,jdbcType=VARCHAR}, #{empPhone,jdbcType=VARCHAR}, #{empQq,jdbcType=VARCHAR},
+    #{empHomeaddr,jdbcType=VARCHAR}, #{empAddr,jdbcType=VARCHAR}, #{empEducationallevel,jdbcType=VARCHAR},
+    #{empDegree,jdbcType=VARCHAR}, #{empGraduationtime,jdbcType=TIMESTAMP}, #{empGraduationschool,jdbcType=VARCHAR},
+    #{empMaster,jdbcType=VARCHAR}, #{empComputerlevel,jdbcType=VARCHAR}, #{empLanguage1,jdbcType=VARCHAR},
+    #{empLanguage2,jdbcType=VARCHAR}, #{empLanguage3,jdbcType=VARCHAR}, #{empSpecialties,jdbcType=VARCHAR},
+    #{empStatus,jdbcType=VARCHAR}, #{empLeavedate,jdbcType=TIMESTAMP}, #{empSocialsecurity,jdbcType=VARCHAR},
+    #{empSecuritynumber,jdbcType=VARCHAR}, #{empSalary,jdbcType=DOUBLE}, #{empPhotourl,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxmy.pojo.Jxmy_employessinfo" >
+    insert into jxmy_employessinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        EMP_ID,
+      </if>
+      <if test="empName != null" >
+        EMP_Name,
+      </if>
+      <if test="empGender != null" >
+        EMP_Gender,
+      </if>
+      <if test="empNative != null" >
+        EMP_Native,
+      </if>
+      <if test="empNumber != null" >
+        EMP_Number,
+      </if>
+      <if test="empIdnumber != null" >
+        EMP_IDNumber,
+      </if>
+      <if test="empDeptid != null" >
+        EMP_DeptID,
+      </if>
+      <if test="empNation != null" >
+        EMP_Nation,
+      </if>
+      <if test="empBirth != null" >
+        EMP_Birth,
+      </if>
+      <if test="empPoliticalstatus != null" >
+        EMP_PoliticalStatus,
+      </if>
+      <if test="empPartytime != null" >
+        EMP_PartyTime,
+      </if>
+      <if test="empLeaguetime != null" >
+        EMP_LeagueTime,
+      </if>
+      <if test="empHiredate != null" >
+        EMP_Hiredate,
+      </if>
+      <if test="empHukoutype != null" >
+        EMP_HukouType,
+      </if>
+      <if test="empHukoulocation != null" >
+        EMP_HukouLocation,
+      </if>
+      <if test="empTpye != null" >
+        EMP_Tpye,
+      </if>
+      <if test="empTitle != null" >
+        EMP_Title,
+      </if>
+      <if test="empPosition != null" >
+        EMP_Position,
+      </if>
+      <if test="empMobilephone != null" >
+        EMP_MobilePhone,
+      </if>
+      <if test="empPhone != null" >
+        EMP_Phone,
+      </if>
+      <if test="empQq != null" >
+        EMP_QQ,
+      </if>
+      <if test="empHomeaddr != null" >
+        EMP_HomeAddr,
+      </if>
+      <if test="empAddr != null" >
+        EMP_Addr,
+      </if>
+      <if test="empEducationallevel != null" >
+        EMP_EducationalLevel,
+      </if>
+      <if test="empDegree != null" >
+        EMP_Degree,
+      </if>
+      <if test="empGraduationtime != null" >
+        EMP_GraduationTime,
+      </if>
+      <if test="empGraduationschool != null" >
+        EMP_GraduationSchool,
+      </if>
+      <if test="empMaster != null" >
+        EMP_Master,
+      </if>
+      <if test="empComputerlevel != null" >
+        EMP_ComputerLevel,
+      </if>
+      <if test="empLanguage1 != null" >
+        EMP_Language1,
+      </if>
+      <if test="empLanguage2 != null" >
+        EMP_Language2,
+      </if>
+      <if test="empLanguage3 != null" >
+        EMP_Language3,
+      </if>
+      <if test="empSpecialties != null" >
+        EMP_Specialties,
+      </if>
+      <if test="empStatus != null" >
+        EMP_Status,
+      </if>
+      <if test="empLeavedate != null" >
+        EMP_LeaveDate,
+      </if>
+      <if test="empSocialsecurity != null" >
+        EMP_SocialSecurity,
+      </if>
+      <if test="empSecuritynumber != null" >
+        EMP_SecurityNumber,
+      </if>
+      <if test="empSalary != null" >
+        EMP_Salary,
+      </if>
+      <if test="empPhotourl != null" >
+        EMP_PhotoUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="empName != null" >
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null" >
+        #{empGender,jdbcType=VARCHAR},
+      </if>
+      <if test="empNative != null" >
+        #{empNative,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        #{empNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdnumber != null" >
+        #{empIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empDeptid != null" >
+        #{empDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="empNation != null" >
+        #{empNation,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirth != null" >
+        #{empBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empPoliticalstatus != null" >
+        #{empPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empPartytime != null" >
+        #{empPartytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empLeaguetime != null" >
+        #{empLeaguetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empHiredate != null" >
+        #{empHiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="empHukoutype != null" >
+        #{empHukoutype,jdbcType=VARCHAR},
+      </if>
+      <if test="empHukoulocation != null" >
+        #{empHukoulocation,jdbcType=VARCHAR},
+      </if>
+      <if test="empTpye != null" >
+        #{empTpye,jdbcType=VARCHAR},
+      </if>
+      <if test="empTitle != null" >
+        #{empTitle,jdbcType=INTEGER},
+      </if>
+      <if test="empPosition != null" >
+        #{empPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="empMobilephone != null" >
+        #{empMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null" >
+        #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empQq != null" >
+        #{empQq,jdbcType=VARCHAR},
+      </if>
+      <if test="empHomeaddr != null" >
+        #{empHomeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddr != null" >
+        #{empAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empEducationallevel != null" >
+        #{empEducationallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="empDegree != null" >
+        #{empDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduationtime != null" >
+        #{empGraduationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empGraduationschool != null" >
+        #{empGraduationschool,jdbcType=VARCHAR},
+      </if>
+      <if test="empMaster != null" >
+        #{empMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="empComputerlevel != null" >
+        #{empComputerlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage1 != null" >
+        #{empLanguage1,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage2 != null" >
+        #{empLanguage2,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage3 != null" >
+        #{empLanguage3,jdbcType=VARCHAR},
+      </if>
+      <if test="empSpecialties != null" >
+        #{empSpecialties,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null" >
+        #{empStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empLeavedate != null" >
+        #{empLeavedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empSocialsecurity != null" >
+        #{empSocialsecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="empSecuritynumber != null" >
+        #{empSecuritynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empSalary != null" >
+        #{empSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="empPhotourl != null" >
+        #{empPhotourl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxmy.pojo.Jxmy_employessinfo" >
+    update jxmy_employessinfo
+    <set >
+      <if test="empName != null" >
+        EMP_Name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null" >
+        EMP_Gender = #{empGender,jdbcType=VARCHAR},
+      </if>
+      <if test="empNative != null" >
+        EMP_Native = #{empNative,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        EMP_Number = #{empNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdnumber != null" >
+        EMP_IDNumber = #{empIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empDeptid != null" >
+        EMP_DeptID = #{empDeptid,jdbcType=INTEGER},
+      </if>
+      <if test="empNation != null" >
+        EMP_Nation = #{empNation,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirth != null" >
+        EMP_Birth = #{empBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empPoliticalstatus != null" >
+        EMP_PoliticalStatus = #{empPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empPartytime != null" >
+        EMP_PartyTime = #{empPartytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empLeaguetime != null" >
+        EMP_LeagueTime = #{empLeaguetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empHiredate != null" >
+        EMP_Hiredate = #{empHiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="empHukoutype != null" >
+        EMP_HukouType = #{empHukoutype,jdbcType=VARCHAR},
+      </if>
+      <if test="empHukoulocation != null" >
+        EMP_HukouLocation = #{empHukoulocation,jdbcType=VARCHAR},
+      </if>
+      <if test="empTpye != null" >
+        EMP_Tpye = #{empTpye,jdbcType=VARCHAR},
+      </if>
+      <if test="empTitle != null" >
+        EMP_Title = #{empTitle,jdbcType=INTEGER},
+      </if>
+      <if test="empPosition != null" >
+        EMP_Position = #{empPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="empMobilephone != null" >
+        EMP_MobilePhone = #{empMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null" >
+        EMP_Phone = #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empQq != null" >
+        EMP_QQ = #{empQq,jdbcType=VARCHAR},
+      </if>
+      <if test="empHomeaddr != null" >
+        EMP_HomeAddr = #{empHomeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddr != null" >
+        EMP_Addr = #{empAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empEducationallevel != null" >
+        EMP_EducationalLevel = #{empEducationallevel,jdbcType=VARCHAR},
+      </if>
+      <if test="empDegree != null" >
+        EMP_Degree = #{empDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="empGraduationtime != null" >
+        EMP_GraduationTime = #{empGraduationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empGraduationschool != null" >
+        EMP_GraduationSchool = #{empGraduationschool,jdbcType=VARCHAR},
+      </if>
+      <if test="empMaster != null" >
+        EMP_Master = #{empMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="empComputerlevel != null" >
+        EMP_ComputerLevel = #{empComputerlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage1 != null" >
+        EMP_Language1 = #{empLanguage1,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage2 != null" >
+        EMP_Language2 = #{empLanguage2,jdbcType=VARCHAR},
+      </if>
+      <if test="empLanguage3 != null" >
+        EMP_Language3 = #{empLanguage3,jdbcType=VARCHAR},
+      </if>
+      <if test="empSpecialties != null" >
+        EMP_Specialties = #{empSpecialties,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null" >
+        EMP_Status = #{empStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empLeavedate != null" >
+        EMP_LeaveDate = #{empLeavedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empSocialsecurity != null" >
+        EMP_SocialSecurity = #{empSocialsecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="empSecuritynumber != null" >
+        EMP_SecurityNumber = #{empSecuritynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="empSalary != null" >
+        EMP_Salary = #{empSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="empPhotourl != null" >
+        EMP_PhotoUrl = #{empPhotourl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where EMP_ID = #{empId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jxmy.pojo.Jxmy_employessinfo" >
+    update jxmy_employessinfo
+    set EMP_Name = #{empName,jdbcType=VARCHAR},
+    EMP_Gender = #{empGender,jdbcType=VARCHAR},
+    EMP_Native = #{empNative,jdbcType=VARCHAR},
+    EMP_Number = #{empNumber,jdbcType=VARCHAR},
+    EMP_IDNumber = #{empIdnumber,jdbcType=VARCHAR},
+    EMP_DeptID = #{empDeptid,jdbcType=INTEGER},
+    EMP_Nation = #{empNation,jdbcType=VARCHAR},
+    EMP_Birth = #{empBirth,jdbcType=TIMESTAMP},
+    EMP_PoliticalStatus = #{empPoliticalstatus,jdbcType=VARCHAR},
+    EMP_PartyTime = #{empPartytime,jdbcType=TIMESTAMP},
+    EMP_LeagueTime = #{empLeaguetime,jdbcType=TIMESTAMP},
+    EMP_Hiredate = #{empHiredate,jdbcType=VARCHAR},
+    EMP_HukouType = #{empHukoutype,jdbcType=VARCHAR},
+    EMP_HukouLocation = #{empHukoulocation,jdbcType=VARCHAR},
+    EMP_Tpye = #{empTpye,jdbcType=VARCHAR},
+    EMP_Title = #{empTitle,jdbcType=INTEGER},
+    EMP_Position = #{empPosition,jdbcType=VARCHAR},
+    EMP_MobilePhone = #{empMobilephone,jdbcType=VARCHAR},
+    EMP_Phone = #{empPhone,jdbcType=VARCHAR},
+    EMP_QQ = #{empQq,jdbcType=VARCHAR},
+    EMP_HomeAddr = #{empHomeaddr,jdbcType=VARCHAR},
+    EMP_Addr = #{empAddr,jdbcType=VARCHAR},
+    EMP_EducationalLevel = #{empEducationallevel,jdbcType=VARCHAR},
+    EMP_Degree = #{empDegree,jdbcType=VARCHAR},
+    EMP_GraduationTime = #{empGraduationtime,jdbcType=TIMESTAMP},
+    EMP_GraduationSchool = #{empGraduationschool,jdbcType=VARCHAR},
+    EMP_Master = #{empMaster,jdbcType=VARCHAR},
+    EMP_ComputerLevel = #{empComputerlevel,jdbcType=VARCHAR},
+    EMP_Language1 = #{empLanguage1,jdbcType=VARCHAR},
+    EMP_Language2 = #{empLanguage2,jdbcType=VARCHAR},
+    EMP_Language3 = #{empLanguage3,jdbcType=VARCHAR},
+    EMP_Specialties = #{empSpecialties,jdbcType=VARCHAR},
+    EMP_Status = #{empStatus,jdbcType=VARCHAR},
+    EMP_LeaveDate = #{empLeavedate,jdbcType=TIMESTAMP},
+    EMP_SocialSecurity = #{empSocialsecurity,jdbcType=VARCHAR},
+    EMP_SecurityNumber = #{empSecuritynumber,jdbcType=VARCHAR},
+    EMP_Salary = #{empSalary,jdbcType=DOUBLE},
+    EMP_PhotoUrl = #{empPhotourl,jdbcType=LONGVARCHAR}
+    where EMP_ID = #{empId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxmy.pojo.Jxmy_employessinfo" >
+    update jxmy_employessinfo
+    set EMP_Name = #{empName,jdbcType=VARCHAR},
+      EMP_Gender = #{empGender,jdbcType=VARCHAR},
+      EMP_Native = #{empNative,jdbcType=VARCHAR},
+      EMP_Number = #{empNumber,jdbcType=VARCHAR},
+      EMP_IDNumber = #{empIdnumber,jdbcType=VARCHAR},
+      EMP_DeptID = #{empDeptid,jdbcType=INTEGER},
+      EMP_Nation = #{empNation,jdbcType=VARCHAR},
+      EMP_Birth = #{empBirth,jdbcType=TIMESTAMP},
+      EMP_PoliticalStatus = #{empPoliticalstatus,jdbcType=VARCHAR},
+      EMP_PartyTime = #{empPartytime,jdbcType=TIMESTAMP},
+      EMP_LeagueTime = #{empLeaguetime,jdbcType=TIMESTAMP},
+      EMP_Hiredate = #{empHiredate,jdbcType=VARCHAR},
+      EMP_HukouType = #{empHukoutype,jdbcType=VARCHAR},
+      EMP_HukouLocation = #{empHukoulocation,jdbcType=VARCHAR},
+      EMP_Tpye = #{empTpye,jdbcType=VARCHAR},
+      EMP_Title = #{empTitle,jdbcType=INTEGER},
+      EMP_Position = #{empPosition,jdbcType=VARCHAR},
+      EMP_MobilePhone = #{empMobilephone,jdbcType=VARCHAR},
+      EMP_Phone = #{empPhone,jdbcType=VARCHAR},
+      EMP_QQ = #{empQq,jdbcType=VARCHAR},
+      EMP_HomeAddr = #{empHomeaddr,jdbcType=VARCHAR},
+      EMP_Addr = #{empAddr,jdbcType=VARCHAR},
+      EMP_EducationalLevel = #{empEducationallevel,jdbcType=VARCHAR},
+      EMP_Degree = #{empDegree,jdbcType=VARCHAR},
+      EMP_GraduationTime = #{empGraduationtime,jdbcType=TIMESTAMP},
+      EMP_GraduationSchool = #{empGraduationschool,jdbcType=VARCHAR},
+      EMP_Master = #{empMaster,jdbcType=VARCHAR},
+      EMP_ComputerLevel = #{empComputerlevel,jdbcType=VARCHAR},
+      EMP_Language1 = #{empLanguage1,jdbcType=VARCHAR},
+      EMP_Language2 = #{empLanguage2,jdbcType=VARCHAR},
+      EMP_Language3 = #{empLanguage3,jdbcType=VARCHAR},
+      EMP_Specialties = #{empSpecialties,jdbcType=VARCHAR},
+      EMP_Status = #{empStatus,jdbcType=VARCHAR},
+      EMP_LeaveDate = #{empLeavedate,jdbcType=TIMESTAMP},
+      EMP_SocialSecurity = #{empSocialsecurity,jdbcType=VARCHAR},
+      EMP_SecurityNumber = #{empSecuritynumber,jdbcType=VARCHAR},
+      EMP_Salary = #{empSalary,jdbcType=DOUBLE}
+    where EMP_ID = #{empId,jdbcType=INTEGER}
+  </update>
+</mapper>

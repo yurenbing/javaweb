@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxmy.dao.Jxmy_financecheckMapper" >
+  <resultMap id="BaseResultMap" type="com.jxmy.pojo.Jxmy_financecheck" >
+    <id column="Check_ID" property="checkId" jdbcType="INTEGER" />
+    <result column="EMP_Owner" property="empOwner" jdbcType="VARCHAR" />
+    <result column="EMP_Dep" property="empDep" jdbcType="VARCHAR" />
+    <result column="Projet_Name" property="projetName" jdbcType="VARCHAR" />
+    <result column="Project_Info" property="projectInfo" jdbcType="VARCHAR" />
+    <result column="Project_Money" property="projectMoney" jdbcType="DOUBLE" />
+    <result column="Project_Date" property="projectDate" jdbcType="TIMESTAMP" />
+    <result column="EMP_Check" property="empCheck" jdbcType="VARCHAR" />
+    <result column="Check_Info" property="checkInfo" jdbcType="VARCHAR" />
+    <result column="Check_Date" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="Finance_Note" property="financeNote" jdbcType="VARCHAR" />
+    <result column="Finance_1" property="finance1" jdbcType="VARCHAR" />
+    <result column="Finance_2" property="finance2" jdbcType="VARCHAR" />
+    <result column="Finance_3" property="finance3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Check_ID, EMP_Owner, EMP_Dep, Projet_Name, Project_Info, Project_Money, Project_Date,
+    EMP_Check, Check_Info, Check_Date, Finance_Note, Finance_1, Finance_2, Finance_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where Check_ID = #{checkId,jdbcType=INTEGER}
+  </select>
+  <select id="selectFinanceunchecked" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where EMP_Check is NULL
+  </select>
+  <select id="selectFinanceUnCheckInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where Projet_Name like '%'+#{projetName,jdbcType=VARCHAR}+'%'and  EMP_Check is NULL
+  </select>
+  <select id="selectFinancechecked" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where EMP_Check is NOT NULL ORDER  BY Check_Date desc
+  </select>
+  <select id="selectFinanceCheckedInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where Projet_Name like '%'+#{projetName,jdbcType=VARCHAR}+'%'and EMP_Check is NOT NULL ORDER  BY Check_Date desc
+  </select>
+  <select id="selectFinanceAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+  </select>
+  <select id="selectMyFinanceAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where EMP_Owner = #{empOwner,jdbcType=VARCHAR}
+  </select>
+  <select id="selectMyFinanceAllChecked" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where EMP_Owner = #{empOwner,jdbcType=VARCHAR} and EMP_Check is NOT NULL ORDER  BY Check_Date desc
+  </select>
+  <select id="selectMyFinanceAllUnChecked" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jxmy_financecheck
+    where EMP_Owner = #{empOwner,jdbcType=VARCHAR} and EMP_Check is NULL
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jxmy_financecheck
+    where Check_ID = #{checkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxmy.pojo.Jxmy_financecheck" >
+    insert into jxmy_financecheck (Check_ID, EMP_Owner, EMP_Dep,
+    Projet_Name, Project_Info, Project_Money,
+    Project_Date, EMP_Check, Check_Info,
+    Check_Date, Finance_Note, Finance_1,
+    Finance_2, Finance_3)
+    values (#{checkId,jdbcType=INTEGER}, #{empOwner,jdbcType=VARCHAR}, #{empDep,jdbcType=VARCHAR},
+    #{projetName,jdbcType=VARCHAR}, #{projectInfo,jdbcType=VARCHAR}, #{projectMoney,jdbcType=DOUBLE},
+    #{projectDate,jdbcType=TIMESTAMP}, #{empCheck,jdbcType=VARCHAR}, #{checkInfo,jdbcType=VARCHAR},
+    #{checkDate,jdbcType=TIMESTAMP}, #{financeNote,jdbcType=VARCHAR}, #{finance1,jdbcType=VARCHAR},
+    #{finance2,jdbcType=VARCHAR}, #{finance3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxmy.pojo.Jxmy_financecheck" >
+    insert into jxmy_financecheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        Check_ID,
+      </if>
+      <if test="empOwner != null" >
+        EMP_Owner,
+      </if>
+      <if test="empDep != null" >
+        EMP_Dep,
+      </if>
+      <if test="projetName != null" >
+        Projet_Name,
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info,
+      </if>
+      <if test="projectMoney != null" >
+        Project_Money,
+      </if>
+      <if test="projectDate != null" >
+        Project_Date,
+      </if>
+      <if test="empCheck != null" >
+        EMP_Check,
+      </if>
+      <if test="checkInfo != null" >
+        Check_Info,
+      </if>
+      <if test="checkDate != null" >
+        Check_Date,
+      </if>
+      <if test="financeNote != null" >
+        Finance_Note,
+      </if>
+      <if test="finance1 != null" >
+        Finance_1,
+      </if>
+      <if test="finance2 != null" >
+        Finance_2,
+      </if>
+      <if test="finance3 != null" >
+        Finance_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="checkId != null" >
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="empOwner != null" >
+        #{empOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="empDep != null" >
+        #{empDep,jdbcType=VARCHAR},
+      </if>
+      <if test="projetName != null" >
+        #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMoney != null" >
+        #{projectMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="projectDate != null" >
+        #{projectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empCheck != null" >
+        #{empCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkInfo != null" >
+        #{checkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeNote != null" >
+        #{financeNote,jdbcType=VARCHAR},
+      </if>
+      <if test="finance1 != null" >
+        #{finance1,jdbcType=VARCHAR},
+      </if>
+      <if test="finance2 != null" >
+        #{finance2,jdbcType=VARCHAR},
+      </if>
+      <if test="finance3 != null" >
+        #{finance3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxmy.pojo.Jxmy_financecheck" >
+    update jxmy_financecheck
+    <set >
+      <if test="empOwner != null" >
+        EMP_Owner = #{empOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="empDep != null" >
+        EMP_Dep = #{empDep,jdbcType=VARCHAR},
+      </if>
+      <if test="projetName != null" >
+        Projet_Name = #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMoney != null" >
+        Project_Money = #{projectMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="projectDate != null" >
+        Project_Date = #{projectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empCheck != null" >
+        EMP_Check = #{empCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkInfo != null" >
+        Check_Info = #{checkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        Check_Date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeNote != null" >
+        Finance_Note = #{financeNote,jdbcType=VARCHAR},
+      </if>
+      <if test="finance1 != null" >
+        Finance_1 = #{finance1,jdbcType=VARCHAR},
+      </if>
+      <if test="finance2 != null" >
+        Finance_2 = #{finance2,jdbcType=VARCHAR},
+      </if>
+      <if test="finance3 != null" >
+        Finance_3 = #{finance3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Check_ID = #{checkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxmy.pojo.Jxmy_financecheck" >
+    update jxmy_financecheck
+    set EMP_Owner = #{empOwner,jdbcType=VARCHAR},
+      EMP_Dep = #{empDep,jdbcType=VARCHAR},
+      Projet_Name = #{projetName,jdbcType=VARCHAR},
+      Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      Project_Money = #{projectMoney,jdbcType=DOUBLE},
+      Project_Date = #{projectDate,jdbcType=TIMESTAMP},
+      EMP_Check = #{empCheck,jdbcType=VARCHAR},
+      Check_Info = #{checkInfo,jdbcType=VARCHAR},
+      Check_Date = #{checkDate,jdbcType=TIMESTAMP},
+      Finance_Note = #{financeNote,jdbcType=VARCHAR},
+      Finance_1 = #{finance1,jdbcType=VARCHAR},
+      Finance_2 = #{finance2,jdbcType=VARCHAR},
+      Finance_3 = #{finance3,jdbcType=VARCHAR}
+    where Check_ID = #{checkId,jdbcType=INTEGER}
+  </update>
+</mapper>

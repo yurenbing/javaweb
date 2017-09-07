@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxmy.dao.Jxmy_loginMapper" >
+  <resultMap id="BaseResultMap" type="com.jxmy.pojo.Jxmy_login" >
+    <id column="Login_ID" property="loginId" jdbcType="INTEGER" />
+    <result column="Login_Name" property="loginName" jdbcType="VARCHAR" />
+    <result column="Login_Password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="EMP_ID" property="empId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jxmy.pojo.Jxmy_login" extends="BaseResultMap" >
+    <result column="EMP_PhotoUrl" property="empPhotourl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Login_ID, Login_Name, Login_Password, EMP_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    EMP_PhotoUrl
+  </sql>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select *
+    from jxmy_login
+    where Login_Name = #{loginName,jdbcType=VARCHAR} and Login_Password= #{loginPassword,jdbcType=VARCHAR}
+  </select>
+  <select id="selectName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select *
+    from jxmy_login
+    where Login_Name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jxmy_login
+    where Login_ID = #{loginId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxmy.pojo.Jxmy_login" >
+    insert into jxmy_login (Login_ID, Login_Name, Login_Password,
+    EMP_ID, EMP_PhotoUrl)
+    values (#{loginId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
+    #{empId,jdbcType=INTEGER}, #{empPhotourl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxmy.pojo.Jxmy_login" >
+    insert into jxmy_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        Login_ID,
+      </if>
+      <if test="loginName != null" >
+        Login_Name,
+      </if>
+      <if test="loginPassword != null" >
+        Login_Password,
+      </if>
+      <if test="empId != null" >
+        EMP_ID,
+      </if>
+      <if test="empPhotourl != null" >
+        EMP_PhotoUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        #{loginId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="empPhotourl != null" >
+        #{empPhotourl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxmy.pojo.Jxmy_login" >
+    update jxmy_login
+    <set >
+      <if test="loginName != null" >
+        Login_Name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        Login_Password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        EMP_ID = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="empPhotourl != null" >
+        EMP_PhotoUrl = #{empPhotourl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Login_ID = #{loginId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jxmy.pojo.Jxmy_login" >
+    update jxmy_login
+    set Login_Name = #{loginName,jdbcType=VARCHAR},
+    Login_Password = #{loginPassword,jdbcType=VARCHAR},
+    EMP_ID = #{empId,jdbcType=INTEGER},
+    EMP_PhotoUrl = #{empPhotourl,jdbcType=LONGVARCHAR}
+    where Login_ID = #{loginId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxmy.pojo.Jxmy_login" >
+    update jxmy_login
+    set Login_Name = #{loginName,jdbcType=VARCHAR},
+      Login_Password = #{loginPassword,jdbcType=VARCHAR},
+      EMP_ID = #{empId,jdbcType=INTEGER}
+    where Login_ID = #{loginId,jdbcType=INTEGER}
+  </update>
+</mapper>

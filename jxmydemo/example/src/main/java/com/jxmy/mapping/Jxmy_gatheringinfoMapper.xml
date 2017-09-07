@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxmy.dao.Jxmy_gatheringinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jxmy.pojo.Jxmy_gatheringinfo" >
+    <id column="Gathering_ID" property="gatheringId" jdbcType="INTEGER" />
+    <result column="Projet_Name" property="projetName" jdbcType="VARCHAR" />
+    <result column="Project_Info" property="projectInfo" jdbcType="VARCHAR" />
+    <result column="Pay_Unit" property="payUnit" jdbcType="VARCHAR" />
+    <result column="Total_money" property="totalMoney" jdbcType="REAL" />
+    <result column="Gather_Date" property="gatherDate" jdbcType="TIMESTAMP" />
+    <result column="Gather_Note" property="gatherNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Gathering_ID, Projet_Name, Project_Info, Pay_Unit, Total_money, Gather_Date, Gather_Note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jxmy_gatheringinfo
+    where Gathering_ID = #{gatheringId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jxmy_gatheringinfo
+    where Gathering_ID = #{gatheringId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxmy.pojo.Jxmy_gatheringinfo" >
+    insert into jxmy_gatheringinfo (Gathering_ID, Projet_Name, Project_Info, 
+      Pay_Unit, Total_money, Gather_Date, 
+      Gather_Note)
+    values (#{gatheringId,jdbcType=INTEGER}, #{projetName,jdbcType=VARCHAR}, #{projectInfo,jdbcType=VARCHAR}, 
+      #{payUnit,jdbcType=VARCHAR}, #{totalMoney,jdbcType=REAL}, #{gatherDate,jdbcType=TIMESTAMP}, 
+      #{gatherNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxmy.pojo.Jxmy_gatheringinfo" >
+    insert into jxmy_gatheringinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gatheringId != null" >
+        Gathering_ID,
+      </if>
+      <if test="projetName != null" >
+        Projet_Name,
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info,
+      </if>
+      <if test="payUnit != null" >
+        Pay_Unit,
+      </if>
+      <if test="totalMoney != null" >
+        Total_money,
+      </if>
+      <if test="gatherDate != null" >
+        Gather_Date,
+      </if>
+      <if test="gatherNote != null" >
+        Gather_Note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gatheringId != null" >
+        #{gatheringId,jdbcType=INTEGER},
+      </if>
+      <if test="projetName != null" >
+        #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payUnit != null" >
+        #{payUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="gatherDate != null" >
+        #{gatherDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gatherNote != null" >
+        #{gatherNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxmy.pojo.Jxmy_gatheringinfo" >
+    update jxmy_gatheringinfo
+    <set >
+      <if test="projetName != null" >
+        Projet_Name = #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payUnit != null" >
+        Pay_Unit = #{payUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        Total_money = #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="gatherDate != null" >
+        Gather_Date = #{gatherDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gatherNote != null" >
+        Gather_Note = #{gatherNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Gathering_ID = #{gatheringId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxmy.pojo.Jxmy_gatheringinfo" >
+    update jxmy_gatheringinfo
+    set Projet_Name = #{projetName,jdbcType=VARCHAR},
+      Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      Pay_Unit = #{payUnit,jdbcType=VARCHAR},
+      Total_money = #{totalMoney,jdbcType=REAL},
+      Gather_Date = #{gatherDate,jdbcType=TIMESTAMP},
+      Gather_Note = #{gatherNote,jdbcType=VARCHAR}
+    where Gathering_ID = #{gatheringId,jdbcType=INTEGER}
+  </update>
+</mapper>

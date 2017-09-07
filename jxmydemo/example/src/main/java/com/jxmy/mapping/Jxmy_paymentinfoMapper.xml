@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxmy.dao.Jxmy_paymentinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jxmy.pojo.Jxmy_paymentinfo" >
+    <id column="Payment_ID" property="paymentId" jdbcType="INTEGER" />
+    <result column="Projet_Name" property="projetName" jdbcType="VARCHAR" />
+    <result column="Project_Info" property="projectInfo" jdbcType="VARCHAR" />
+    <result column="Gather_Unit" property="gatherUnit" jdbcType="VARCHAR" />
+    <result column="Total_money" property="totalMoney" jdbcType="REAL" />
+    <result column="Payment_Date" property="paymentDate" jdbcType="TIMESTAMP" />
+    <result column="Payment_Note" property="paymentNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Payment_ID, Projet_Name, Project_Info, Gather_Unit, Total_money, Payment_Date, Payment_Note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jxmy_paymentinfo
+    where Payment_ID = #{paymentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jxmy_paymentinfo
+    where Payment_ID = #{paymentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxmy.pojo.Jxmy_paymentinfo" >
+    insert into jxmy_paymentinfo (Payment_ID, Projet_Name, Project_Info, 
+      Gather_Unit, Total_money, Payment_Date, 
+      Payment_Note)
+    values (#{paymentId,jdbcType=INTEGER}, #{projetName,jdbcType=VARCHAR}, #{projectInfo,jdbcType=VARCHAR}, 
+      #{gatherUnit,jdbcType=VARCHAR}, #{totalMoney,jdbcType=REAL}, #{paymentDate,jdbcType=TIMESTAMP}, 
+      #{paymentNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxmy.pojo.Jxmy_paymentinfo" >
+    insert into jxmy_paymentinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        Payment_ID,
+      </if>
+      <if test="projetName != null" >
+        Projet_Name,
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info,
+      </if>
+      <if test="gatherUnit != null" >
+        Gather_Unit,
+      </if>
+      <if test="totalMoney != null" >
+        Total_money,
+      </if>
+      <if test="paymentDate != null" >
+        Payment_Date,
+      </if>
+      <if test="paymentNote != null" >
+        Payment_Note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="projetName != null" >
+        #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatherUnit != null" >
+        #{gatherUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="paymentDate != null" >
+        #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentNote != null" >
+        #{paymentNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxmy.pojo.Jxmy_paymentinfo" >
+    update jxmy_paymentinfo
+    <set >
+      <if test="projetName != null" >
+        Projet_Name = #{projetName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectInfo != null" >
+        Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatherUnit != null" >
+        Gather_Unit = #{gatherUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        Total_money = #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="paymentDate != null" >
+        Payment_Date = #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentNote != null" >
+        Payment_Note = #{paymentNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Payment_ID = #{paymentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxmy.pojo.Jxmy_paymentinfo" >
+    update jxmy_paymentinfo
+    set Projet_Name = #{projetName,jdbcType=VARCHAR},
+      Project_Info = #{projectInfo,jdbcType=VARCHAR},
+      Gather_Unit = #{gatherUnit,jdbcType=VARCHAR},
+      Total_money = #{totalMoney,jdbcType=REAL},
+      Payment_Date = #{paymentDate,jdbcType=TIMESTAMP},
+      Payment_Note = #{paymentNote,jdbcType=VARCHAR}
+    where Payment_ID = #{paymentId,jdbcType=INTEGER}
+  </update>
+</mapper>
